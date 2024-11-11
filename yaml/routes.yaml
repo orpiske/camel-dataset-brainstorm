@@ -1,0 +1,69 @@
+- route:
+    id: route-3491
+    from:
+      id: from-3336
+      description: start
+      uri: timer:startTimer
+      parameters:
+        repeatCount: "1"
+      steps:
+        - process:
+            id: process-3518
+            ref: checkRepo
+        - choice:
+            id: choice-5626
+            otherwise:
+              id: otherwise-4184
+              steps:
+                - to:
+                    uri: direct:pull
+            when:
+              - id: when-1797
+                steps:
+                  - to:
+                      uri: direct:clone
+                expression:
+                  simple:
+                    expression: ${header.exits} == false
+        - setBody:
+            id: setBody-2062
+            expression:
+              constant:
+                expression: '{"event": "data", "name": "camel@github", "state": "completed",
+                  "path": "/Users/opiske/tmp/brainstorm-data/"}'
+        - to:
+            id: to-1741
+            uri: kafka:event.data.acquisition
+            parameters:
+              brokers: fuse-dev-02.tpb.lab.eng.brq.redhat.com
+        - log:
+            id: log-9711
+            message: template message
+- route:
+    id: route-pull
+    from:
+      id: from-1634
+      uri: direct:pull
+      steps:
+        - to:
+            id: pull-3124
+            description: pullCode
+            uri: git:/Users/opiske/tmp/brainstorm-data/
+            parameters:
+              operation: pull
+              remotePath: https://github.com/apache/camel.git
+- route:
+    id: route-clone
+    from:
+      id: from-1634
+      uri: direct:clone
+      steps:
+        - to:
+            id: clone-3124
+            description: cloneCode
+            uri: git:/Users/opiske/tmp/brainstorm-data/
+            parameters:
+              operation: clone
+              remotePath: https://github.com/apache/camel.git
+- beans:
+    - name: checkRepo
