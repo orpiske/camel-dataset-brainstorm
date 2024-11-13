@@ -7,9 +7,21 @@
       parameters:
         repeatCount: "1"
       steps:
+        - setHeaders:
+            id: setHeaders-1023
+            headers:
+              - expression:
+                  constant:
+                    expression: https://github.com/apache/camel/
+                    resultType: java.lang.String
+                name: REPOSITORY
+              - expression:
+                  constant:
+                    expression: /Users/opiske/tmp/brainstorm-data-3
+                name: DATA_DIRECTORY
         - process:
             id: process-3518
-            ref: checkRepo
+            ref: checkProcessor
         - choice:
             id: choice-5626
             otherwise:
@@ -24,18 +36,18 @@
                       uri: direct:clone
                 expression:
                   simple:
-                    expression: ${header.exits} == false
-        - setBody:
-            id: setBody-2062
-            expression:
-              constant:
-                expression: '{"event": "data", "name": "camel@github", "state": "completed",
-                  "path": "/Users/opiske/tmp/brainstorm-data/"}'
+                    expression: ${header.exists} == false
+        - process:
+            id: process-5049
+            ref: acquiredProcessor
+        - marshal:
+            id: marshal-2728
+            json: {}
         - to:
             id: to-1741
-            uri: kafka:event.data.acquisition
+            uri: kafka:commits
             parameters:
-              brokers: fuse-dev-02.tpb.lab.eng.brq.redhat.com
+              brokers: fuse-dev-02.tpb.lab.eng.brq.redhat.com:9092
         - log:
             id: log-9711
             message: template message
@@ -45,25 +57,28 @@
       id: from-1634
       uri: direct:pull
       steps:
-        - to:
-            id: pull-3124
-            description: pullCode
-            uri: git:/Users/opiske/tmp/brainstorm-data/
+        - toD:
+            id: toD-2378
+            description: pull the repository
+            uri: git:${header.DATA_DIRECTORY}/${header.name}
             parameters:
               operation: pull
-              remotePath: https://github.com/apache/camel.git
+              remoteName: origin
 - route:
     id: route-clone
     from:
       id: from-1634
       uri: direct:clone
       steps:
-        - to:
-            id: clone-3124
-            description: cloneCode
-            uri: git:/Users/opiske/tmp/brainstorm-data/
+        - toD:
+            id: toD-7686
+            description: clone the repository
+            uri: git:${header.DATA_DIRECTORY}/${header.name}
             parameters:
               operation: clone
-              remotePath: https://github.com/apache/camel.git
+              remotePath: ${header.REPOSITORY}
 - beans:
-    - name: checkRepo
+    - name: checkProcessor
+      type: org.brainstorm.camel.codefetcher.beans.CheckProcessor
+    - name: acquiredProcessor
+      type: org.brainstorm.camel.codefetcher.beans.AcquiredProcessor
