@@ -6,7 +6,6 @@ import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.InvalidPayloadException;
 import org.apache.camel.Processor;
-import org.brainstorm.api.event.DataAcquired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
