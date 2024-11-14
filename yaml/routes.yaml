@@ -44,13 +44,12 @@
             id: marshal-2728
             json: {}
         - to:
-            id: to-1741
-            uri: kafka:commits
-            parameters:
-              brokers: fuse-dev-02.tpb.lab.eng.brq.redhat.com:9092
+            id: to-6168
+            uri: direct:completed
+            parameters: {}
         - log:
             id: log-9711
-            message: template message
+            message: Data acquisition completed
 - route:
     id: route-pull
     from:
