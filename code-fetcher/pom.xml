@@ -26,23 +26,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-direct</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-kafka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-git</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
             <artifactId>camel-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-main</artifactId>
+            <artifactId>camel-git</artifactId>
         </dependency>
 
         <dependency>
@@ -55,16 +43,9 @@
         </dependency>
 
         <dependency>
-            <groupId>info.picocli</groupId>
-            <artifactId>picocli</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.brainstorm</groupId>
             <artifactId>api</artifactId>
         </dependency>
     </dependencies>
-
-    <build></build>
 
 </project>

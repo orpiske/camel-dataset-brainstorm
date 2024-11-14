@@ -11,10 +11,6 @@
 
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>../code-main</module>
-    </modules>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -52,21 +48,12 @@
                 <artifactId>log4j-core</artifactId>
                 <version>${log4j.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>info.picocli</groupId>
-                <artifactId>picocli</artifactId>
-                <version>${picocli.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.brainstorm</groupId>
                 <artifactId>api</artifactId>
                 <version>${api.version}</version>
             </dependency>
         </dependencies>
-
-
     </dependencyManagement>
 
     <dependencies>
