@@ -45,7 +45,7 @@
             json: {}
         - to:
             id: to-6168
-            uri: direct:completed
+            uri: direct:data.acquired
             parameters: {}
         - log:
             id: log-9711
