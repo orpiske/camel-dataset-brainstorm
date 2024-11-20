@@ -1,0 +1,20 @@
+acquisition:
+  steps:
+    - type: "camel-worker"
+      bootstrap-server: "fuse-dev-02.tpb.lab.eng.brq.redhat.com"
+      file: "/Users/opiske/code/demos/camel-dataset-brainstorm/yaml/routes.yaml"
+      produces-to: "data.acquired"
+      dependencies:
+        - "org.brainstorm.camel:code-fetcher:1.0-SNAPSHOT"
+transformation:
+  steps:
+    - type: "run-worker"
+      bootstrap-server: "fuse-dev-02.tpb.lab.eng.brq.redhat.com"
+      script: "/Users/opiske/code/demos/camel-dataset-brainstorm/scripts/prepare-data.sh"
+      consumes-from: "data.acquired"
+      produces-to: "data.prepare"
+    - type: "run-worker"
+      bootstrap-server: "fuse-dev-02.tpb.lab.eng.brq.redhat.com"
+      script: "/Users/opiske/code/demos/camel-dataset-brainstorm/scripts/generate-data-set.sh"
+      consumes-from: "data.prepare"
+      produces-to: "data.complete"
