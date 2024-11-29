@@ -1,23 +1,23 @@
 acquisition:
   steps:
-  - bootstrapServer: fuse-dev-02.tpb.lab.eng.brq.redhat.com
-    file: /Users/opiske/code/demos/camel-dataset-brainstorm/yaml/routes.yaml
-    producesTo: data.acquired
-    dependencies:
-      - org.brainstorm.camel:code-fetcher:1.0-SNAPSHOT
-    type: camel-worker
-    port: 0
+    - !<camelStep>
+      bootstrapServer: fuse-dev-02.tpb.lab.eng.brq.redhat.com
+      file: "/Users/opiske/code/demos/camel-dataset-brainstorm/yaml/routes.yaml"
+      producesTo: data.acquired
+      dependencies:
+        - org.brainstorm.camel:code-fetcher:1.0-SNAPSHOT
+      port: 0
 transformation:
   steps:
-  - type: run-worker
-    bootstrapServer: fuse-dev-02.tpb.lab.eng.brq.redhat.com
-    script: /Users/opiske/code/demos/camel-dataset-brainstorm/scripts/prepare-data.sh
-    consumesFrom: data.acquired
-    producesTo: data.prepare
-    port: 0
-  - type: run-worker
-    bootstrapServer: fuse-dev-02.tpb.lab.eng.brq.redhat.com
-    script: /Users/opiske/code/demos/camel-dataset-brainstorm/scripts/generate-data-set.sh
-    consumesFrom: data.prepare
-    producesTo: data.complete
-    port: 0
+    - !<localStep>
+      bootstrapServer: fuse-dev-02.tpb.lab.eng.brq.redhat.com
+      script: "/Users/opiske/code/demos/camel-dataset-brainstorm/scripts/prepare-data.sh"
+      consumesFrom: data.acquired
+      producesTo: data.prepare
+      port: 0
+    - !<localStep>
+      bootstrapServer: fuse-dev-02.tpb.lab.eng.brq.redhat.com
+      script: "/Users/opiske/code/demos/camel-dataset-brainstorm/scripts/generate-data-set.sh"
+      consumesFrom: data.prepare
+      producesTo: data.complete
+      port: 0
