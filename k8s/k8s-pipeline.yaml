@@ -1,0 +1,11 @@
+apiVersion: "pipeline.brainstorm.org/v1alpha1"
+kind: Acquisition
+metadata:
+  name: my-test-acquisition
+  namespace: default
+spec:
+  pipelineInfra:
+    bootstrapServer: 'fuse-dev-02.tpb.lab.eng.brq.redhat.com'
+    port: 9092
+  acquisitionStep:
+    producesTo: data.acquired
