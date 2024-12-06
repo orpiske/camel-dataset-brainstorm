@@ -17,7 +17,7 @@
                 name: REPOSITORY
               - expression:
                   constant:
-                    expression: /Users/opiske/tmp/brainstorm-data-3
+                    expression: /opt/brainstorm/data/work/
                 name: DATA_DIRECTORY
         - process:
             id: process-3518
