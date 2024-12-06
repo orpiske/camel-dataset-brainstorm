@@ -3,7 +3,6 @@ package org.brainstorm.camel.codefetcher.beans;
 import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
-import org.brainstorm.api.common.Header;
 import org.brainstorm.api.event.DataAcquired;
 
 @BindToRegistry("acquiredProcessor")
