@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#CODE_DIR=${1:-"$HOME/code/java/camel"}
-
 install_path=$(dirname "$0")
 CODE_DIR=$(echo "$1" | jq -r .path)
 
