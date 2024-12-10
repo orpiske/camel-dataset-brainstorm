@@ -15,7 +15,16 @@
 # limitations under the License.
 #
 #FROM quay.io/bstorm/runner-worker:latest as base
-FROM docker.io/otavio021/runner-worker:latest as base
+FROM docker.io/otavio021/runner-worker:latest as build
 LABEL maintainer="orpiske@apache.org"
+WORKDIR /opt/brainstorm/build
+RUN dnf install -y java-21-devel git maven && \
+    git clone https://github.com/megacamelus/camel-jbang-plugin-explain.git && \
+    cd camel-jbang-plugin-explain/ && \
+    mvn -Pstandalone package && \
+    dnf clean all
+
+FROM docker.io/otavio021/runner-worker:latest as base
 WORKDIR /opt/brainstorm/step/
 COPY --chmod=755 transform.sh ./
+COPY --from=build /opt/brainstorm/build/camel-jbang-plugin-explain/target/camel-jbang-plugin-explain-4.8.0-jar-with-dependencies.jar ./

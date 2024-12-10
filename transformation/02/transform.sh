@@ -1,5 +1,15 @@
 #!/bin/bash
-JAR_FILE=$HOME/code/java/camel-jbang-explain/target/camel-jbang-plugin-explain-4.8.0-jar-with-dependencies.jar
-DATA_DIR=$HOME/tmp/brainstorm-data-3
 
-java -jar ${JAR_FILE} data dump --data-type component-documentation --source-path ${DATA_DIR}/camel/
+install_path=$(dirname "$0")
+VERSION=4.8.0
+
+JAR_FILE=${install_path}/camel-jbang-plugin-explain-${VERSION}-jar-with-dependencies.jar
+BRAINSTORM_HOME=/opt/brainstorm/
+BASE_DATA_DIR=${BRAINSTORM_HOME}/data
+DATA_DIR=${BASE_DATA_DIR}/work/camel/
+
+echo "Generating the dataset"
+java -jar "${JAR_FILE}" data dump --data-type component-documentation --source-path ${DATA_DIR}
+
+echo "Moving the dataset"
+mv dataset ${BASE_DATA_DIR}
