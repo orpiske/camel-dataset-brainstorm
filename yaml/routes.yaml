@@ -61,6 +61,8 @@
             description: pull the repository
             uri: git:${header.DATA_DIRECTORY}/${header.name}
             parameters:
+              allowEmpty: true
+              branchName: main
               operation: pull
               remoteName: origin
 - route:
@@ -77,7 +79,7 @@
               allowEmpty: true
               branchName: main
               operation: clone
-              remoteName: main
+              remoteName: origin
               remotePath: ${header.REPOSITORY}
               targetBranchName: main
 - beans:
