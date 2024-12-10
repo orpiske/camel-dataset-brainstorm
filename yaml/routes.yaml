@@ -74,8 +74,12 @@
             description: clone the repository
             uri: git:${header.DATA_DIRECTORY}/${header.name}
             parameters:
+              allowEmpty: true
+              branchName: main
               operation: clone
+              remoteName: main
               remotePath: ${header.REPOSITORY}
+              targetBranchName: main
 - beans:
     - name: checkProcessor
       type: org.brainstorm.camel.codefetcher.beans.CheckProcessor
