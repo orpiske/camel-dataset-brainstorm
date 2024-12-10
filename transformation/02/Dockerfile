@@ -18,4 +18,4 @@
 FROM docker.io/otavio021/runner-worker:latest as base
 LABEL maintainer="orpiske@apache.org"
 WORKDIR /opt/brainstorm/step/
-COPY --chmod=755 generate-data-set.sh ./
+COPY --chmod=755 transform.sh ./

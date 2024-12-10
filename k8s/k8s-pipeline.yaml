@@ -16,9 +16,7 @@ spec:
         consumesFrom: data.acquired
         producesTo: data.step.01
         name: step-01
-        script: prepare-data.sh
       - image: docker.io/otavio021/runner-worker-step-02
         consumesFrom: data.step.01
         producesTo: data.completed
         name: step-02
-        script: generate-data-set.sh

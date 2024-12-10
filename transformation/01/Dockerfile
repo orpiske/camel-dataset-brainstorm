@@ -18,6 +18,6 @@
 FROM docker.io/otavio021/runner-worker:latest as base
 LABEL maintainer="orpiske@apache.org"
 WORKDIR /opt/brainstorm/step/
-COPY --chmod=755 convert-file.sh prepare-data.sh ./
+COPY --chmod=755 convert-file.sh transform.sh ./
 RUN dnf install -y asciidoc pandoc jq &&  \
     dnf clean all
