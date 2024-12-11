@@ -1,7 +1,7 @@
 apiVersion: "pipeline.brainstorm.org/v1alpha1"
-kind: Acquisition
+kind: Pipeline
 metadata:
-  name: my-test-acquisition
+  name: camel-dataset-brainstorm
   namespace: default
 spec:
   pipelineInfra:
