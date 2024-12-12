@@ -8,15 +8,15 @@ spec:
     bootstrapServer: 'fuse-dev-02.tpb.lab.eng.brq.redhat.com'
     port: 9092
   acquisitionStep:
-    image: quay.io/bstorm/camel-worker-runner-01:latest
+    image: quay.io/bstorm/camel-source-runner-01:latest
     producesTo: data.acquired
   transformationSteps:
     steps:
-      - image: quay.io/bstorm/runner-worker-step-01
+      - image: quay.io/bstorm/runner-transformer-step-01
         consumesFrom: data.acquired
         producesTo: data.step.01
         name: step-01
-      - image: quay.io/bstorm/runner-worker-step-02
+      - image: quay.io/bstorm/runner-transformer-step-02
         consumesFrom: data.step.01
         producesTo: data.completed
         name: step-02

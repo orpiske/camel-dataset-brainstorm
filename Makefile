@@ -8,11 +8,11 @@ INGESTION=$(PROJ_PATH)/yaml/routes.yaml
 REGISTRY:=quay.io
 ORGANIZATION:=bstorm
 
-ACQUISITION_BASE_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-worker:latest
-ACQUISITION_OUTPUT_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-worker-runner-01:latest
+ACQUISITION_BASE_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-source:latest
+ACQUISITION_OUTPUT_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-source-runner-01:latest
 
-TRANSFORMATION_IMG_01=$(REGISTRY)/$(ORGANIZATION)/runner-worker-step-01
-TRANSFORMATION_IMG_02=$(REGISTRY)/$(ORGANIZATION)/runner-worker-step-02
+TRANSFORMATION_IMG_01=$(REGISTRY)/$(ORGANIZATION)/runner-transformer-step-01
+TRANSFORMATION_IMG_02=$(REGISTRY)/$(ORGANIZATION)/runner-transformer-step-02
 
 build:
 	mvn clean package
