@@ -11,5 +11,10 @@ DATA_DIR=${BASE_DATA_DIR}/work/camel/
 echo "Generating the dataset"
 java -jar "${JAR_FILE}" data dump --data-type component-documentation --source-path ${DATA_DIR}
 
+if [[ -d ${BASE_DATA_DIR}/dataset ]] ; then
+  echo "Removing old dataset"
+  rm -rf ${BASE_DATA_DIR}/dataset
+fi
+
 echo "Moving the dataset"
 mv dataset ${BASE_DATA_DIR}

@@ -1,0 +1,16 @@
+- route:
+    id: route-8539
+    from:
+      id: from-3981
+      uri: direct
+      parameters:
+        name: start-transformation
+      steps:
+        - log:
+            id: log-4583
+            message: ${body}
+        - to:
+            id: to-2167
+            uri: direct
+            parameters:
+              name: end-transformation
