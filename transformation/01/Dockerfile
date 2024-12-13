@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-FROM quay.io/bstorm/runner-worker:latest as base
+FROM quay.io/bstorm/runner-transformer:latest as base
 LABEL maintainer="orpiske@apache.org"
 WORKDIR /opt/brainstorm/step/
 COPY --chmod=755 convert-file.sh transform.sh ./
