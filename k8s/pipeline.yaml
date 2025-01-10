@@ -7,7 +7,7 @@ spec:
   pipelineInfra:
     bootstrapServer: 'fuse-dev-02.tpb.lab.eng.brq.redhat.com'
     port: 9092
-  acquisitionStep:
+  sourceStep:
     image: quay.io/orpiske/camel-source-runner-01:latest
     producesTo: data.acquired
   transformationSteps:
