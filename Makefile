@@ -34,4 +34,4 @@ deploy:
 	kubectl apply -f k8s/pipeline.yaml
 
 undeploy:
-	kubectl delete -f k8s/pipeline.yaml
+	kubectl delete -f k8s/pipeline.yaml || true
