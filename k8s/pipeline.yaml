@@ -24,3 +24,6 @@ spec:
         consumesFrom: data.step.02
         producesTo: data.completed
         name: step-03
+  sinkStep:
+    image: quay.io/orpiske/camel-sink-runner-01:latest
+    consumesFrom: data.completed
