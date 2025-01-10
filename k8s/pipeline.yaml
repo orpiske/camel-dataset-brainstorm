@@ -9,21 +9,10 @@ spec:
     port: 9092
   sourceStep:
     image: quay.io/orpiske/camel-source-runner-01:latest
-    producesTo: data.acquired
   transformationSteps:
     steps:
       - image: quay.io/orpiske/runner-transformer-step-01
-        consumesFrom: data.acquired
-        producesTo: data.step.01
-        name: step-01
       - image: quay.io/orpiske/runner-transformer-step-02
-        consumesFrom: data.step.01
-        producesTo: data.step.02
-        name: step-02
       - image: quay.io/orpiske/camel-transformer-step-03
-        consumesFrom: data.step.02
-        producesTo: data.completed
-        name: step-03
   sinkStep:
     image: quay.io/orpiske/camel-sink-runner-01:latest
-    consumesFrom: data.completed
