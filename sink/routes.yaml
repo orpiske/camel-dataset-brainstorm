@@ -6,11 +6,14 @@
       parameters:
         name: data-completed
       steps:
-        - log:
-            id: log-4583
-            message: ${body}
+        - process:
+            id: process-3358
+            ref: publishProcessor
         - to:
             id: to-2167
             uri: direct
             parameters:
               name: end-of-pipeline
+- beans:
+    - name: publishProcessor
+      type: org.brainstorm.camel.sink.beans.PublishProcessor

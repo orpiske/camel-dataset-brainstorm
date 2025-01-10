@@ -5,12 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.brainstorm.camel</groupId>
-        <artifactId>camel-dataset-brainstorm</artifactId>
+        <artifactId>dataset-code</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
+    <name>Camel :: DataSet :: Code :: Parent</name>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -21,6 +23,7 @@
         <picocli.version>4.7.6</picocli.version>
         <api.version>1.0-SNAPSHOT</api.version>
     </properties>
+
 
     <dependencyManagement>
         <dependencies>

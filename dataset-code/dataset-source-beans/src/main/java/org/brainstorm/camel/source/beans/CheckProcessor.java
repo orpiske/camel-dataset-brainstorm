@@ -1,4 +1,4 @@
-package org.brainstorm.camel.codefetcher.beans;
+package org.brainstorm.camel.source.beans;
 
 import java.io.File;
 

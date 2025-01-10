@@ -1,4 +1,4 @@
-package org.brainstorm.camel.codefetcher.beans;
+package org.brainstorm.camel.source.beans;
 
 import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;

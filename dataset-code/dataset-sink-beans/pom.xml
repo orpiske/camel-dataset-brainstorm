@@ -10,14 +10,9 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>code-fetcher</artifactId>
+    <artifactId>dataset-sink-beans</artifactId>
     <packaging>jar</packaging>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <name>Camel :: DataSet :: Code :: Sink Beans</name>
 
     <dependencies>
         <dependency>

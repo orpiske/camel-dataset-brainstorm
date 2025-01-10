@@ -84,6 +84,6 @@
               targetBranchName: main
 - beans:
     - name: checkProcessor
-      type: org.brainstorm.camel.codefetcher.beans.CheckProcessor
+      type: org.brainstorm.camel.source.beans.CheckProcessor
     - name: acquiredProcessor
-      type: org.brainstorm.camel.codefetcher.beans.AcquiredProcessor
+      type: org.brainstorm.camel.source.beans.AcquiredProcessor
