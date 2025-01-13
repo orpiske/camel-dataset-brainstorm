@@ -21,14 +21,24 @@ TRANSFORMATION_IMG_02=$(REGISTRY)/$(ORGANIZATION)/runner-transformer-step-02
 TRANSFORMATION_IMG_03=$(REGISTRY)/$(ORGANIZATION)/camel-transformer-step-03
 
 clean:
-	mvn clean package
+	rm -f $(PROJ_PATH)/source/*.jar
+	rm -f $(PROJ_PATH)/sink/*.jar
 
-build: clean
-	java -jar $(CLI_PATH) package source --artifact $(SOURCE_ARTIFACTS) --ingestion $(SOURCE_FILE) --output-image $(SOURCE_OUTPUT_IMAGE) --username $(ORGANIZATION_USER) --password $(REGISTRY_PASSWD)
+build-code:
+	mvn clean package
+	cp $(SOURCE_ARTIFACTS) $(PROJ_PATH)/source
+	cp $(SINK_ARTIFACTS) $(PROJ_PATH)/sink
+
+build: build-code
+	java -jar $(CLI_PATH) package source --base-dir $(PROJ_PATH)/source --output-image $(SOURCE_OUTPUT_IMAGE)
 	java -jar $(CLI_PATH) package runner --base-dir $(PROJ_PATH)/transformation/01/ --output-image $(TRANSFORMATION_IMG_01)
 	java -jar $(CLI_PATH) package runner --base-dir $(PROJ_PATH)/transformation/02/ --output-image $(TRANSFORMATION_IMG_02)
 	java -jar $(CLI_PATH) package runner --base-dir $(PROJ_PATH)/transformation/03/ --output-image $(TRANSFORMATION_IMG_03)
-	java -jar $(CLI_PATH) package sink --artifact $(SINK_ARTIFACTS) --step $(SINK_FILE) --output-image $(SINK_OUTPUT_IMAGE) --username $(ORGANIZATION_USER) --password $(REGISTRY_PASSWD)
+	java -jar $(CLI_PATH) package sink --base-dir $(PROJ_PATH)/sink --output-image $(SINK_OUTPUT_IMAGE)
+
+push: build
+	podman push $(SINK_OUTPUT_IMAGE)
+	podman push $(SOURCE_OUTPUT_IMAGE)
 	podman push $(TRANSFORMATION_IMG_01)
 	podman push $(TRANSFORMATION_IMG_02)
 	podman push $(TRANSFORMATION_IMG_03)
