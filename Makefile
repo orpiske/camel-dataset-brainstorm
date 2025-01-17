@@ -11,7 +11,6 @@ SINK_FILE=$(PROJ_PATH)/sink/routes.yaml
 REGISTRY:=quay.io
 ORGANIZATION:=orpiske
 
-SOURCE_BASE_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-source:latest
 SOURCE_OUTPUT_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-source-runner-01:latest
 
 SINK_OUTPUT_IMAGE:=$(REGISTRY)/$(ORGANIZATION)/camel-sink-runner-01:latest
