@@ -14,7 +14,7 @@ public class CheckProcessor implements Processor {
     private static final Logger LOG = LoggerFactory.getLogger(CheckProcessor.class);
 
     public void process(Exchange exchange) throws InvalidPayloadException {
-        final String repository = exchange.getMessage().getHeader("REPOSITORY", String.class);
+        final String repository = exchange.getMessage().getHeader("SOURCE_ADDRESS", String.class);
 
         if (repository == null) {
             exchange.getMessage().setHeader("valid", false);

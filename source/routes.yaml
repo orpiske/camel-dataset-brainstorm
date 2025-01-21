@@ -1,11 +1,11 @@
 - route:
     id: route-3491
     from:
-      id: from-3336
-      description: start
-      uri: timer:startTimer
+      id: from-4087
+      description: start acquisition
+      uri: direct
       parameters:
-        repeatCount: "1"
+        name: data.start
       steps:
         - setHeaders:
             id: setHeaders-1023
@@ -14,11 +14,7 @@
                   constant:
                     expression: https://github.com/apache/camel/
                     resultType: java.lang.String
-                name: REPOSITORY
-              - expression:
-                  constant:
-                    expression: /opt/brainstorm/data/work/
-                name: DATA_DIRECTORY
+                name: SOURCE_ADDRESS
         - process:
             id: process-3518
             ref: checkProcessor
@@ -37,19 +33,10 @@
                 expression:
                   simple:
                     expression: ${header.exists} == false
-        - process:
-            id: process-5049
-            ref: acquiredProcessor
-        - marshal:
-            id: marshal-2728
-            json: {}
         - to:
             id: to-6168
             uri: direct:data.acquired
             parameters: {}
-        - log:
-            id: log-9711
-            message: Data acquisition completed
 - route:
     id: route-pull
     from:
@@ -80,10 +67,8 @@
               branchName: main
               operation: clone
               remoteName: origin
-              remotePath: ${header.REPOSITORY}
+              remotePath: ${header.SOURCE_ADDRESS}
               targetBranchName: main
 - beans:
     - name: checkProcessor
       type: org.brainstorm.camel.source.beans.CheckProcessor
-    - name: acquiredProcessor
-      type: org.brainstorm.camel.source.beans.AcquiredProcessor
