@@ -1,0 +1,51 @@
+{
+  "registry": {
+    "name": "quay.io"
+  },
+  "organization": {
+    "name": "orpiske"
+  },
+  "version": "latest",
+  "code": {
+    "lifecycle": {
+      "context": {
+        "path": "."
+      },
+      "build": {
+        "command": "mvn -Dquarkus.container-image.build=true -Dquarkus.container-image.registry=%registryName% -Dquarkus.container-image.group=%organizationName% -Dquarkus.container-image.tag=%version% package"
+      },
+      "clean": {
+        "command": "mvn clean"
+      }
+    }
+  },
+  "source": {
+    "artifacts": [
+      "./dataset-code/dataset-source-beans/target/dataset-source-beans-jar-with-dependencies.jar"
+    ],
+    "file": "/source/routes.yaml",
+    "image": {
+      "name": "camel-source-runner-01"
+    }
+  },
+  "sink": {
+    "artifacts": [
+      "./dataset-code/dataset-sink-beans/target/dataset-sink-beans-jar-with-dependencies.jar"
+    ],
+    "file": "/sink/routes.yaml",
+    "image": {
+      "name": "camel-sink-runner-01"
+    }
+  },
+  "transformations": [
+    {
+      "name": "runner-transformer-step-01"
+    },
+    {
+      "name": "runner-transformer-step-02"
+    },
+    {
+      "name": "camel-transformer-step-03"
+    }
+  ]
+}
