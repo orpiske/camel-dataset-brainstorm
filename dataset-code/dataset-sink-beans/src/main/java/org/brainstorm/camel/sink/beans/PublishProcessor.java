@@ -31,8 +31,7 @@ public class PublishProcessor implements Processor {
 
         String endpoint = String.format("kafka:camel.dataset?brokers=%s:%d", bootStrapServer, port);
 
-        File basePath = new File(dataAcquired.getPath()).getParentFile();
-        File path = new File(basePath, "dataset");
+        File path = new File(dataAcquired.getPath(), "dataset");
         final File[] files = path.listFiles();
 
         if (files == null || files.length == 0) {
